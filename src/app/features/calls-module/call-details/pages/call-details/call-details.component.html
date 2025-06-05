@@ -1,0 +1,151 @@
+<div class="page-container">
+  <div class="tabs">
+    <span class="tab active">Caller</span>
+    <span class="tab">Validation</span>
+    <span class="tab">Voucher/SMS</span>
+    <span class="tab">Complaints</span>
+    <span class="tab">Documents</span>
+  </div>
+
+  <div class="content-wrapper">
+    <!-- Display Call ID -->
+    <div *ngIf="callRef" class="readonly-row">
+      <div class="readonly-label">Call ID</div>
+      <div class="readonly-value">{{ callRef }}</div>
+    </div>
+
+    <!-- Form Card -->
+    <div class="form-card">
+      <div class="readonly-row">
+        <div class="readonly-label">Client</div>
+        <div class="readonly-value">{{ call?.client || '1Life–Agency1' }}</div>
+      </div>
+
+      <div class="readonly-row">
+        <div class="readonly-label">Service Type</div>
+        <div class="readonly-value">{{ call?.type || 'AVS–Legal Assist' }}</div>
+      </div>
+
+      <div class="radio-question">
+        <label>Did you get consent to obtain the caller's personal information and explained what it will be used for?</label>
+        <div class="radio-group">
+          <label><input type="radio" name="consent" /> Yes</label>
+          <label><input type="radio" name="consent" /> No</label>
+          <label><input type="radio" name="consent" /> N/A</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="float-label">
+          <input type="text" required [(ngModel)]="formData.firstName" />
+          <label>First Name</label>
+        </div>
+
+        <div class="float-label">
+          <input type="text" required [(ngModel)]="formData.lastName" />
+          <label>Last Name</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="float-label select-pair">
+          <select [(ngModel)]="formData.callbackCode">
+            <option>Select</option>
+            <option *ngFor="let opt of callbackOptions">{{ opt }}</option>
+          </select>
+          <label>Callback Number</label>
+        </div>
+
+        <div class="float-label">
+          <input type="text" [(ngModel)]="formData.callbackNumber" required />
+          <label></label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="float-label select-pair">
+          <select [(ngModel)]="formData.hourCode">
+            <option>Select</option>
+            <option *ngFor="let opt of callbackOptions">{{ opt }}</option> <!-- Reuse callbackOptions or create new -->
+          </select>
+          <label>24 Hour Number</label>
+        </div>
+
+        <div class="float-label">
+          <input type="text" [(ngModel)]="formData.hourNumber" />
+          <label></label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="float-label select-pair">
+          <select [(ngModel)]="formData.cellCode">
+            <option>Select</option>
+            <option *ngFor="let opt of callbackOptions">{{ opt }}</option> <!-- Reuse callbackOptions or create new -->
+          </select>
+          <label>Cell Number</label>
+        </div>
+
+        <div class="float-label">
+          <input type="text" [(ngModel)]="formData.cellNumber" />
+          <label></label>
+        </div>
+      </div>
+
+      <div class="radio-question">
+        <label>Caller is Policy Holder</label>
+        <label><input type="radio" name="holder" /> Yes</label>
+        <label><input type="radio" name="holder" /> No</label>
+      </div>
+
+      <div class="readonly-row">
+        <div class="readonly-label">Agent</div>
+        <div class="readonly-value">{{ call?.agent || 'Hanno Coetzee' }}</div>
+      </div>
+
+      <div class="readonly-row">
+        <div class="readonly-label">Call Open Date</div>
+        <div class="readonly-value">{{ call?.callDate || '02-06-2021 12:24 PM' }}</div>
+      </div>
+
+      <div class="row">
+        <div class="float-label full-width">
+          <select [(ngModel)]="formData.language">
+            <option>Select</option>
+            <option *ngFor="let lang of languageOptions">{{ lang }}</option>
+          </select>
+          <label>Preferred Language</label>
+        </div>
+      </div>
+
+      <div class="radio-question">
+        <label>Call Reference Number Given To Caller?</label>
+        <label><input type="radio" name="refGiven" /> Yes</label>
+        <label><input type="radio" name="refGiven" /> No</label>
+      </div>
+    </div>
+
+    <!-- Info Section -->
+    <div class="info-section">
+      <h4><a href="#">Key Features</a></h4>
+      <ul>
+        <li>24 Hour assistance on any Legal Matter</li>
+        <li><span class="red">30 min FREE face-to-face consultation</span> with an attorney</li>
+        <li><span class="red">Free Standard Legal Documentation</span></li>
+        <li>Free Will Service</li>
+        <li><span class="red">Free Estate Planning</span> (Office Hours Only)</li>
+        <li><span class="red">Labour Law & Industrial relations</span> services</li>
+        <li><span class="red">Tax Info Helpline</span> (Office Hours Only)</li>
+      </ul>
+
+      <h4><a href="#">Conditions</a></h4>
+      <ul>
+        <li>This service is confined to within RSA</li>
+        <li>This service relates to South African Law only</li>
+      </ul>
+
+      <h4><a href="#">Who Qualifies for this Benefit?</a></h4>
+      <p>Any person listed as a life covered under a valid policy.</p>
+    </div>
+  </div>
+</div>
