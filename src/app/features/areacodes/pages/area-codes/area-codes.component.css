@@ -1,3 +1,4 @@
+/* Existing styles from your project */
 .full-width-wrapper {
   width: 100%;
   margin: 0;
@@ -12,5 +13,39 @@
 }
 
 .temporary-row {
-  background-color: yellow !important; /* Light yellow */
+  background-color: yellow !important;
+}
+
+/* Save button styles (updated to match New Button) */
+.btn.btn-secondary {
+  background-color: #05b9bc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  font-size: 1rem;
+}
+
+.btn.btn-secondary:hover {
+  background-color: #048a91;
+}
+
+.btn.btn-secondary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.btn .rounded-circle {
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

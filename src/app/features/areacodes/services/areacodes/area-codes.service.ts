@@ -24,15 +24,15 @@ getAreaCodes(): Observable<AreaCodes[]> {
   //  addAreaCode(areaCode:  AreaCodes): Observable<AreaCodes> {
   //   return this.http.post<AreaCodes>(this.apiUrl, areaCode);
   // }
-  addAreaCode(areaCode: AreaCodes): Observable<AreaCodes> {
-    const payload = {
-      AreaCode: areaCode.AreaCode,
-      Description: areaCode.Description,
-      Type: areaCode.Type,
-      IsActive: areaCode.IsActive,
-    };
-    return this.http.post<AreaCodes>(this.apiUrl, payload);
-  }
+  // addAreaCode(areaCode: AreaCodes): Observable<AreaCodes> {
+  //   const payload = {
+  //     AreaCode: areaCode.AreaCode,
+  //     Description: areaCode.Description,
+  //     Type: areaCode.Type,
+  //     IsActive: areaCode.IsActive,
+  //   };
+  //   return this.http.post<AreaCodes>(this.apiUrl, payload);
+  // }
  
   updateAreaCode(areaCode: AreaCodes): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/${areaCode.AreaCode}`, areaCode);
@@ -40,5 +40,8 @@ getAreaCodes(): Observable<AreaCodes[]> {
  
   softDeleteAreaCode(areaCode: AreaCodes): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/${areaCode.AreaCode}`, areaCode);
+  }
+   addAreaCode(areaCode: AreaCodes): Observable<AreaCodes> {
+    return this.http.post<AreaCodes>(this.apiUrl, areaCode);
   }
 }

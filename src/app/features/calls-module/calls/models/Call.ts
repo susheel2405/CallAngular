@@ -1,6 +1,6 @@
 export interface Call {
-  callRef: string;
   status: string;
+  callRef: string;
   caseNo: string;
   callDate: string;
   callerName: string;
@@ -8,12 +8,7 @@ export interface Call {
   client: string;
   type: string;
   funeralDate: string;
-  callbackCode?: string;
-  callbackNumber?: string;
-  hourCode?: string;
-  hourNumber?: string;
-  cellCode?: string;
-  cellNumber?: string;
-  language?: string;
-  agent?: string;
+  callerFirstName: string;
+  callerLastName: string;
+  
 }

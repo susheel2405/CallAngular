@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CallsComponent } from './calls/pages/calls/calls.component';
 import { CallDetailsComponent } from './call-details/pages/call-details/call-details.component';
+import { FormsModule } from '@angular/forms';
+
 
 const routes: Routes = [
   {
@@ -11,12 +13,13 @@ const routes: Routes = [
     data: { breadcrumb: 'Call Centre / Calls' },
   },
   {
-    path: 'details/:id', // Route for CallDetailsComponent with call ID
+    path: 'call-details/:callRef', // 👈 dynamic route with parameter
     component: CallDetailsComponent,
     title: 'Call Details',
-    data: { breadcrumb: ' Calls / Calls Details' },
+    data: { breadcrumb: 'Call Centre / Calls / Call Details' },
   },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

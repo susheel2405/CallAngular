@@ -1,4 +1,4 @@
-<div class="ag-theme-alpine" style="height: 500px; width: 100%">
+<div class="ag-theme-alpine" style="width: 100%;">
   <ag-grid-angular
     class="ag-grid-responsive"
     [rowData]="rowData"
@@ -8,7 +8,6 @@
     [pagination]="true"
     [paginationPageSize]="20"
     [domLayout]="'autoHeight'"
-    [rowClassRules]="{}"
     [getRowClass]="getRowClass"
     [components]="{
       activeToggleRenderer: ActiveToggleRendererComponent,
@@ -16,9 +15,9 @@
     }"
     [animateRows]="true"
     [getContextMenuItems]="getContextMenuItems"
-    (cellValueChanged)="onCellValueChanged($event)"
+    [getRowClass]="getRowClass"
+      (gridReady)="onGridReady($event)"
+     (cellValueChanged)="onCellValueChanged($event)"
   >
   </ag-grid-angular>
 </div>
- 
- 

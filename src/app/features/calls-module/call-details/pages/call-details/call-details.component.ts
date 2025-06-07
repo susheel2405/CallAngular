@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { Call } from '../../../calls/models/Call';
 import { CallsService } from '../../../calls/services/call-services/calls.service';
 import { ActiveToggleRendererComponent } from '../../../../../shared/component/active-toggle-renderer/active-toggle-renderer.component';
@@ -11,46 +12,46 @@ import { ColDef, GridApi } from 'ag-grid-community';
   templateUrl: './call-details.component.html',
   styleUrl: './call-details.component.css'
 })
-export class CallDetailsComponent {
-formData = {
-    firstName: '',
-    lastName: '',
-    callbackCode: '',
-    callbackNumber: '',
-    hourCode: '',
-    hourNumber: '',
-    cellCode: '',
-    cellNumber: '',
-    language: '',
-  };
+export class CallDetailsComponent implements OnInit{
+callRef!: string;
+  callerName: string = '';
+  clientName: string = '';
+   activeTab: string = 'caller'; // default tab
+cellNumber: any;
+// These properties should be defined in CallDetailsComponent
+consent: string = '';
+firstName: string = '';
+secondName: string = '';
+callbackNumber: string = '';
+callbackNumberInput: string = '';
+hourNumber: string = '';
+hourNumberInput: string = '';
+cellNumberInput: string = '';
+isPolicyHolder: string = '';
+agent: string = '';
+callOpenDate: string = '';
+language: string = '';
+refGiven: string = '';
 
-  callbackOptions = ['+27', '+91', '+44'];
-  languageOptions = ['English', 'Afrikaans', 'Zulu'];
-  call: Call | null = null;
-  callRef: string | null = null; // Changed from callId to callRef
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
 
-  ngOnInit(): void {
-    this.callRef = this.route.snapshot.paramMap.get('callRef'); // Changed from id to callRef
-    const navigation = window.history.state;
-    if (navigation.call) {
-      this.call = navigation.call as Call;
-      console.log('Received call data:', this.call); // Debug: Log received call
-      this.formData = {
-        firstName: this.call.callerName?.split(' ')[0] || '',
-        lastName: this.call.callerName?.split(' ')[1] || '',
-        callbackCode: this.call.callbackCode || '',
-        callbackNumber: this.call.callbackNumber || '',
-        hourCode: this.call.hourCode || '',
-        hourNumber: this.call.hourNumber || '',
-        cellCode: this.call.cellCode || '',
-        cellNumber: this.call.cellNumber || '',
-        language: this.call.language || '',
-      };
-    } else {
-      console.error('No call data provided for callRef:', this.callRef); // Debug: Log missing data
-      this.router.navigate(['/calls']);
-    }
-  }
+  constructor(private route: ActivatedRoute) {}
+
+ngOnInit() {
+  this.route.paramMap.subscribe(params => {
+    this.callRef = params.get('callRef') ?? '';
+  });
+
+  this.route.queryParamMap.subscribe(queryParams => {
+    this.callerName = queryParams.get('callerName') ?? '';
+    this.clientName = queryParams.get('client') ?? '';
+  });
+
+ 
+  
+}
+
+selectTab(tabName: string) {
+    this.activeTab = tabName;
+  }
 }
